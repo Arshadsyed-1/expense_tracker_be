@@ -34,6 +34,9 @@ CREATE TABLE expenses(
 
 conn.commit()
 
+@app.get("/")
+def home():
+    return {"message": "Expense Tracker API is running"}
 
 app = FastAPI()
 @app.post("/expense")
