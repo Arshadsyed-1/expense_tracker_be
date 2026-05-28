@@ -24,13 +24,14 @@ conn = mysql.connector.connect(
 cursor = conn.cursor(dictionary=True)
 
 cursor.execute("""
-CREATE TABLE expenses(
+CREATE TABLE IF NOT EXISTS expenses(
     expense_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(100),
     amount DECIMAL(10,2),
     category VARCHAR(100),
     date DATE
-); """)
+)
+""")
 
 conn.commit()
 
@@ -110,7 +111,7 @@ def filter_expenses(category: str):
     cursor.execute(query, values)
     data = cursor.fetchall()
     return data
-@app.get("/expense/analyze")
+@app.get("/expense/ssssssanalyze")
 def analyze_spending():
     query = "select category, sum(amount) from expenses group by category"
     cursor.execute(query)
